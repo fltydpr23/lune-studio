@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO Meta -->
     <meta name="description" content="Lune Studio designs modern, mobile-first websites for Indian small businesses. Trusted by 50+ clients across Chennai. WhatsApp us for a free consultation.">
-    <meta name="keywords" content="website design Chennai, web redesign India, small business website India, affordable web design Chennai, modern website Tamil Nadu">
+    <meta name="keywords" content="website design Chennai, web redesign India, small business website India, affordable web design Chennai, affordable website bengaluru, modern website Tamil Nadu">
     <meta name="author" content="Lune Studio">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://lunestudio.in/">
@@ -436,38 +436,110 @@
             line-height: 1.6;
         }
 
-        /* WhatsApp button */
-        .whatsapp-button {
+        /* WhatsApp widget */
+        .wa-widget {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 56px;
-            height: 56px;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            animation: popIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s backwards;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .wa-bubble {
+            display: none;
+            position: absolute;
+            bottom: 68px;
+            right: 0;
+            width: 280px;
+            background: #0e0e1a;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            animation: bubbleIn 0.25s ease;
+        }
+        @keyframes bubbleIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .wa-bubble.open { display: block; }
+        .wa-bubble-header {
+            background: #25D366;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .wa-bubble-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 14px;
+        }
+        .wa-bubble-name { font-weight: 700; color: #fff; font-size: 13px; }
+        .wa-bubble-status { font-size: 11px; color: rgba(255,255,255,0.8); }
+        .wa-bubble-body { padding: 16px; }
+        .wa-chat-bubble {
+            background: rgba(255,255,255,0.06);
+            border-radius: 0 12px 12px 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #d1d5db;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .wa-chat-time { font-size: 10px; color: #6b7280; text-align: right; margin-top: 4px; }
+        .wa-start-btn {
+            display: block;
+            width: 100%;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        .wa-start-btn:hover { background: #20ba5e; }
+        .wa-fab {
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             background: linear-gradient(135deg, #25d366 0%, #20ba5e 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
-            animation: popIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s backwards;
+            box-shadow: 0 4px 16px rgba(37,211,102,0.45);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
         }
-
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-button svg {
-            width: 28px;
-            height: 28px;
+        .wa-fab:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(37,211,102,0.5); }
+        .wa-fab svg { width: 28px; height: 28px; }
+        .wa-notif {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 14px;
+            height: 14px;
+            background: #F472B6;
+            border-radius: 50%;
+            border: 2px solid #09090F;
+            animation: pulse 2s infinite;
         }
 
         /* Section spacing */
@@ -623,10 +695,7 @@
                 gap: 20px;
             }
 
-            .whatsapp-button {
-                bottom: 20px;
-                right: 20px;
-            }
+
 
             .comparison-container {
                 aspect-ratio: 9 / 14;
@@ -841,6 +910,64 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.85); }
         }
+
+        /* FAQ accordion */
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+        .faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 20px 0;
+            font-family: 'Syne', serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            transition: color 0.2s;
+        }
+        .faq-question:hover { color: #A78BFA; }
+        .faq-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid rgba(167,139,250,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+            color: #A78BFA;
+            transition: transform 0.3s ease, background 0.2s;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+            background: rgba(167,139,250,0.15);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+            padding-bottom: 0;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-bottom: 20px;
+        }
+        .faq-answer p {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
@@ -1494,19 +1621,21 @@
                         <span data-lang="hi">Lune Studio के बारे में</span>
                     </h2>
                     <p class="text-slate-300 text-lg leading-relaxed mb-6">
-                        <span data-lang="en">We're a design-led web studio specialising in redesigning outdated websites for small businesses across India.</span>
-                        <span data-lang="ta">நாங்கள் இந்தியா முழுவதும் உள்ள சிறு வணிகங்களுக்கு பழைய வலைதளங்களை மறுவடிவமைப்பு செய்யும் ஒரு வடிவமைப்பு-மையமான வெப் ஸ்டுடியோ.</span>
-                        <span data-lang="hi">हम एक डिज़ाइन-प्रधान वेब स्टूडियो हैं जो पूरे भारत में छोटे व्यवसायों के लिए पुरानी वेबसाइटों को फिर से डिज़ाइन करने में विशेषज्ञ हैं।</span>
+                        <span data-lang="en">We build websites that bring in real customers. Not just pretty pages — sites that load fast, rank on Google, and turn visitors into enquiries.</span>
+                        <span data-lang="ta">நாங்கள் உண்மையான வாடிக்கையாளர்களை கொண்டுவரும் வலைதளங்களை உருவாக்குகிறோம். வேகமாக ஏற்றமாகும், Google-ல் தோன்றும், பார்வையாளர்களை வாடிக்கையாளர்களாக மாற்றும்.</span>
+                        <span data-lang="hi">हम ऐसी वेबसाइटें बनाते हैं जो असली ग्राहक लाती हैं — तेज़, Google पर दिखने वाली, और विज़िटर्स को कस्टमर में बदलने वाली।</span>
                     </p>
                     <p class="text-slate-300 text-lg leading-relaxed mb-6">
-                        We started this because we noticed something: small business owners across India were losing customers online because their websites looked old and untrustworthy. They'd invested so much in building their business, but online they looked like competitors who didn't care.
+                        Vikram Dental Care in Adyar went from ₹1L to ₹3L a month within 4 months of their new site going live. Stanley Music Store in T.Nagar saw 62% more enquiries in the first two months. These aren't flukes — they're what happens when a good business finally looks the part online.
                     </p>
                     <p class="text-slate-300 text-lg leading-relaxed mb-6">
-                        Now we help 50+ businesses every year modernize their websites. We focus on three things: speed, trust, and converting visitors into customers.
+                        We work with clinics, stores, gyms, salons, and service businesses across India. If your business is good but your website isn't showing it — that's exactly who we're here for.
                     </p>
-                    <p class="text-slate-400 text-base">
-                        <strong>2+ years</strong> of design experience • <strong>50+</strong> businesses transformed • <strong>Available on WhatsApp</strong> 24/7
-                    </p>
+                    <div class="flex flex-wrap gap-6 mt-2">
+                        <div><p class="text-2xl font-bold text-violet-400">50+</p><p class="text-slate-500 text-xs uppercase tracking-wider mt-1">Businesses transformed</p></div>
+                        <div><p class="text-2xl font-bold text-violet-400">3×</p><p class="text-slate-500 text-xs uppercase tracking-wider mt-1">Avg revenue growth</p></div>
+                        <div><p class="text-2xl font-bold text-violet-400">5–7</p><p class="text-slate-500 text-xs uppercase tracking-wider mt-1">Days to launch</p></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1541,7 +1670,7 @@
                     <p class="text-slate-400 text-sm mb-6">For new websites or light updates</p>
                     
                     <div class="mb-6">
-                        <span class="text-4xl font-bold">₹12,000</span>
+                        <span class="text-4xl font-bold">₹15,000</span>
                         <p class="text-slate-400 text-sm mt-2">One-time payment</p>
                     </div>
 
@@ -1579,7 +1708,7 @@
                     <p class="text-xs text-violet-300 mb-6" style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);padding:6px 10px;border-radius:6px;">Clients on this plan typically see <strong>2–3× more inquiries</strong> within 60 days</p>
                     
                     <div class="mb-6">
-                        <span class="text-4xl font-bold">₹20,000</span>
+                        <span class="text-4xl font-bold">₹25,000</span>
                         <p class="text-slate-400 text-sm mt-2">One-time payment · ROI in 1–2 months</p>
                     </div>
 
@@ -1610,13 +1739,18 @@
                 </div>
 
                 <!-- Premium Plan -->
-                <div class="scroll-reveal grid-item glass-card pricing-card">
+                <div class="scroll-reveal grid-item glass-card pricing-card" style="border-color:rgba(167,139,250,0.2);">
                     <h3 class="text-2xl font-bold mb-2">Premium</h3>
-                    <p class="text-slate-400 text-sm mb-6">For serious business growth</p>
+                    <p class="text-slate-400 text-sm mb-6">For businesses that want everything done right</p>
                     
                     <div class="mb-6">
-                        <span class="text-4xl font-bold">₹35,000</span>
-                        <p class="text-slate-400 text-sm mt-2">One-time payment</p>
+                        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);padding:10px 16px;border-radius:8px;">
+                            <span style="font-size:22px;">🤝</span>
+                            <div>
+                                <p style="font-weight:700;font-size:15px;color:#fff;">Custom Pricing</p>
+                                <p style="font-size:11px;color:#9ca3af;margin-top:1px;">Based on your project scope</p>
+                            </div>
+                        </div>
                     </div>
 
                     <ul class="space-y-3 mb-8 flex-1">
@@ -1626,7 +1760,7 @@
                         </li>
                         <li class="flex items-start gap-3 text-sm">
                             <span class="text-violet-400 mt-0.5">✓</span>
-                            <span>Full SEO audit & setup</span>
+                            <span>Full SEO audit & keyword strategy</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm">
                             <span class="text-violet-400 mt-0.5">✓</span>
@@ -1634,15 +1768,19 @@
                         </li>
                         <li class="flex items-start gap-3 text-sm">
                             <span class="text-violet-400 mt-0.5">✓</span>
-                            <span>Advanced analytics setup</span>
+                            <span>Advanced analytics & conversion tracking</span>
                         </li>
                         <li class="flex items-start gap-3 text-sm">
                             <span class="text-violet-400 mt-0.5">✓</span>
-                            <span>3 months of support</span>
+                            <span>3 months dedicated support</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm">
+                            <span class="text-violet-400 mt-0.5">✓</span>
+                            <span>Priority turnaround</span>
                         </li>
                     </ul>
 
-                    <button class="btn-premium btn-secondary w-full" onclick="window.open('https://wa.me/919597893308', '_blank')">Chat on WhatsApp</button>
+                    <button class="btn-premium btn-primary w-full" onclick="window.open('https://wa.me/919597893308?text=Hi%2C%20I%27m%20interested%20in%20the%20Premium%20plan%20from%20Lune%20Studio', '_blank')">Get a Custom Quote →</button>
                 </div>
             </div>
 
@@ -1654,6 +1792,93 @@
                     Chat with us on WhatsApp. We'll analyze your current website and recommend the perfect plan for your business.
                 </p>
                 <button class="btn-premium btn-primary" onclick="window.open('https://wa.me/919597893308', '_blank')">Free WhatsApp Consultation</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="py-24">
+        <div class="section-container">
+            <div class="mb-16">
+                <span class="section-eyebrow">FAQ</span>
+                <h2 class="text-4xl md:text-5xl font-bold">
+                    <span data-lang="en">Questions we get every time</span>
+                    <span data-lang="ta">அடிக்கடி கேட்கப்படும் கேள்விகள்</span>
+                    <span data-lang="hi">अक्सर पूछे जाने वाले सवाल</span>
+                </h2>
+            </div>
+
+            <div class="max-w-3xl">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How long does it take to build my website?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Most websites are live within <strong>5–7 days</strong> of us receiving your content (logo, photos, text). The Professional plan sometimes takes up to 10 days due to the additional integrations. We'll give you a clear timeline before we start — no vague estimates.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Do I need to provide content, or do you write it?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We write the copy for you based on a short WhatsApp conversation about your business. You just tell us what you do, who your customers are, and what makes you different — we handle the rest. If you have existing content you like, we'll incorporate that too.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Will I own the website after it's built?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>100% yes.</strong> The code, the design, the domain — everything is yours once the project is complete and paid for. We don't lock you into any platform or subscription. You can take the files and host them anywhere.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Can you work with my existing domain name?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. We'll connect the new site to your existing domain — whether it's on GoDaddy, Hostinger, Namecheap, or anywhere else. If you don't have a domain yet, we'll help you pick and register one. Usually takes less than 30 minutes to set up.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        What if I'm not happy with the design?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>All plans include <strong>unlimited revisions</strong> until you're 100% satisfied. If you're genuinely unhappy with the initial concept, we'll refund your advance — full stop. We've never had to do this, but the guarantee is real.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Do I need to pay for hosting separately?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Starter and Professional plans are deployed on Vercel — which has a generous free tier that handles most small business traffic at zero cost. Premium plans include 1 year of hosting on our infrastructure. Either way, we handle the setup completely.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How does payment work?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>50% upfront, 50% on delivery.</strong> We accept UPI, bank transfer, and all major payment methods. The advance confirms your slot and lets us start. Final payment is only due when you've seen the finished site and are happy with it.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1793,20 +2018,36 @@
         </div>
     </div>
 
-    <!-- WhatsApp Button -->
-    <div class="whatsapp-button" title="Chat on WhatsApp" onclick="window.open('https://wa.me/919597893308', '_blank')">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Phone handset shape — the actual WhatsApp icon -->
-          <path fill="#ffffff" d="
-            M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.829 1.78 6.86L2 30l7.363-1.752A13.926 13.926 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z
-          "/>
-          <path fill="#25D366" d="
-            M16 4.5C9.648 4.5 4.5 9.648 4.5 16c0 2.247.636 4.346 1.74 6.123l.254.42-1.08 3.944 4.05-1.063.407.24A11.445 11.445 0 0016 27.5c6.352 0 11.5-5.148 11.5-11.5S22.352 4.5 16 4.5z
-          "/>
-          <path fill="#ffffff" d="
-            M12.18 10.5c-.3-.007-.63.003-.945.672-.317.669-1.207 2.103-1.207 3.57 0 1.467.995 2.886 1.134 3.086.14.2 1.924 3.097 4.748 4.218 2.328.92 2.823.737 3.332.691.51-.046 1.643-.672 1.876-1.32.233-.649.233-1.204.163-1.32-.07-.115-.257-.185-.537-.324-.28-.14-1.655-.817-1.911-.91-.255-.093-.44-.14-.626.14-.186.28-.72.91-.883 1.096-.163.187-.326.21-.606.07-.28-.14-1.182-.436-2.252-1.39-.832-.742-1.394-1.659-1.557-1.938-.163-.28-.017-.431.123-.57.126-.124.28-.324.42-.487.14-.163.187-.28.28-.467.094-.187.047-.35-.023-.49-.07-.14-.613-1.523-.857-2.087-.23-.548-.463-.466-.627-.474l-.534-.007z
-          "/>
-        </svg>
+    <!-- WhatsApp Chat Widget -->
+    <div class="wa-widget">
+        <!-- Chat bubble popup -->
+        <div class="wa-bubble" id="waBubble">
+            <div class="wa-bubble-header">
+                <div class="wa-bubble-avatar">LS</div>
+                <div>
+                    <div class="wa-bubble-name">Lune Studio</div>
+                    <div class="wa-bubble-status">● Typically replies in minutes</div>
+                </div>
+            </div>
+            <div class="wa-bubble-body">
+                <div class="wa-chat-bubble">
+                    Hi there! 👋 Tell us about your business and we'll send you a free website audit within 2 hours.
+                    <div class="wa-chat-time">now</div>
+                </div>
+                <button class="wa-start-btn" onclick="window.open('https://wa.me/919597893308?text=Hi%20Lune%20Studio%2C%20I%27d%20like%20a%20free%20website%20audit%20for%20my%20business.', '_blank')">
+                    💬 Start Chat on WhatsApp
+                </button>
+            </div>
+        </div>
+        <!-- FAB button -->
+        <button class="wa-fab" onclick="toggleWaWidget()" title="Chat on WhatsApp">
+            <div class="wa-notif"></div>
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#ffffff" d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.829 1.78 6.86L2 30l7.363-1.752A13.926 13.926 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z"/>
+              <path fill="#25D366" d="M16 4.5C9.648 4.5 4.5 9.648 4.5 16c0 2.247.636 4.346 1.74 6.123l.254.42-1.08 3.944 4.05-1.063.407.24A11.445 11.445 0 0016 27.5c6.352 0 11.5-5.148 11.5-11.5S22.352 4.5 16 4.5z"/>
+              <path fill="#ffffff" d="M12.18 10.5c-.3-.007-.63.003-.945.672-.317.669-1.207 2.103-1.207 3.57 0 1.467.995 2.886 1.134 3.086.14.2 1.924 3.097 4.748 4.218 2.328.92 2.823.737 3.332.691.51-.046 1.643-.672 1.876-1.32.233-.649.233-1.204.163-1.32-.07-.115-.257-.185-.537-.324-.28-.14-1.655-.817-1.911-.91-.255-.093-.44-.14-.626.14-.186.28-.72.91-.883 1.096-.163.187-.326.21-.606.07-.28-.14-1.182-.436-2.252-1.39-.832-.742-1.394-1.659-1.557-1.938-.163-.28-.017-.431.123-.57.126-.124.28-.324.42-.487.14-.163.187-.28.28-.467.094-.187.047-.35-.023-.49-.07-.14-.613-1.523-.857-2.087-.23-.548-.463-.466-.627-.474l-.534-.007z"/>
+            </svg>
+        </button>
     </div>
 
     <script>
@@ -1830,6 +2071,30 @@
             if (e.key === 'Escape') {
                 document.getElementById('privacyModal').style.display = 'none';
                 document.getElementById('termsModal').style.display = 'none';
+            }
+        });
+
+
+        // FAQ accordion
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const isOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            // Open clicked if it was closed
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // WhatsApp widget toggle
+        function toggleWaWidget() {
+            const bubble = document.getElementById('waBubble');
+            bubble.classList.toggle('open');
+        }
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+            const widget = document.querySelector('.wa-widget');
+            if (widget && !widget.contains(e.target)) {
+                document.getElementById('waBubble').classList.remove('open');
             }
         });
 
@@ -1866,20 +2131,19 @@
             }, 30);
         }
 
-        // Trigger counters when they come into view
-        document.querySelectorAll('.counter').forEach(counter => {
-            observer.observe(counter);
-        });
-
+        // Counter observer — fixed, no duplicate registration
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                     entry.target.classList.add('animated');
-                    animateCounter(entry.target, parseInt(entry.target.dataset.target));
+                    // Small delay so fonts/layout are settled before animating
+                    setTimeout(() => {
+                        animateCounter(entry.target, parseInt(entry.target.dataset.target));
+                    }, 120);
                     counterObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.counter').forEach(counter => {
             counterObserver.observe(counter);
